@@ -10,7 +10,7 @@ def get_region():
     metadata = get_instance_metadata()
     return metadata['placement']['availability-zone'][:-1]
 
-if int(os.popen('ps -ef|grep gen_data.py|grep -v grep|wc -l').read()) == 1:
+if int(os.popen('ps -ef|grep write_to_s3.py|grep -v grep|wc -l').read()) == 1:
 	s3_conn = boto.connect_s3(get_region())
 	buckt = s3_conn.get_bucket('myapplogsbabupe') 
 	mtime = os.stat('/home/ec2-user/write_to_s3.py')[8]
